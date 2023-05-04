@@ -61,3 +61,28 @@ document.addEventListener('DOMContentLoaded', function () {
     },
   })
 })
+
+addEventListener('load', () => {
+  document.querySelector('.submit-btn').addEventListener('click', () => {
+    const data = {}
+    document
+      .querySelectorAll('select, input[type=text], textarea')
+      .forEach((item) => {
+        if (!item.classList.contains('select-dropdown')) {
+          data[item.name] = item.value
+        }
+      })
+    console.log(data)
+    console.log(JSON.stringify(data))
+  })
+
+  document.querySelector('.clean-btn').addEventListener('click', () => {
+    document.querySelectorAll('input[type=text], textarea').forEach((item) => {
+      item.value = ''
+    })
+    document.querySelectorAll('select').forEach((item) => {
+      item.selectedIndex = -1
+      M.FormSelect.init(item)
+    })
+  })
+})
